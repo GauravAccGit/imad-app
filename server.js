@@ -5,21 +5,43 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-  title: 'Article One',
-  heading: 'Article One',
-  date: 'August 3',
-  content: `
-    <p>
-        This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 1
-    </p>
-    <p>
-        This is articleone para 2, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 2
-    </p>
-    <p>
-        This is articleone para 3, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 3
-    </p>
-  `
+var articles = {
+      'article-one' : {
+      title: 'Article One',
+      heading: 'Article One',
+      date: 'August 3',
+      content: `
+        <p>
+            This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 1
+        </p>
+        <p>
+            This is articleone para 2, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 2
+        </p>
+        <p>
+            This is articleone para 3, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 3
+        </p>
+      `
+        },
+        'article-two' : {
+      title: 'Article Two',
+      heading: 'Article Two',
+      date: 'August 5',
+      content: `
+        <p>
+            This is articleTwo para 1, 
+        </p>
+      `
+        },
+        'article-three' : {
+      title: 'Article Three',
+      heading: 'Article Three',
+      date: 'August 7',
+      content: `
+        <p>
+            This is articleThree para 1, 
+        </p>
+      `
+        }
 };
 
 function createTemplate (data) {
@@ -63,17 +85,18 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+  var articleName = req.params.articleName;    
+  res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/article-two', function (req, res) {
-  res.send("Article two requested and will be served here");
-});
+//app.get('/article-two', function (req, res) {
+//  res.send("Article two requested and will be served here");
+//});
 
-app.get('/article-three', function (req, res) {
-  res.send("Article three requested and will be served here");
-});
+//app.get('/article-three', function (req, res) {
+//  res.send("Article three requested and will be served here");
+//});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
