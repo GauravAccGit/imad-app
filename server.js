@@ -85,6 +85,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:articleName', function (req, res) {
+  //This :/ is a facility given by express framework to extract the 'part of path' as a variable from URL
+  //such that it can be indexed directly into an array of strings!!
   var articleName = req.params.articleName;    
   res.send(createTemplate(articles[articleName]));
 });
