@@ -4,7 +4,7 @@ console.log('Loaded!');
 var element = document.getElementById('main-text');
 element.innerHTML = 'New Value';
 
-var imgName = document.getElementById('img');
+var imgName = document.getElementById('madi');
 
 imgName.onclick = function() {
   imgName.style.marginLeft = '100px';  
