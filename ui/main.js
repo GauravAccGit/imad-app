@@ -1,5 +1,28 @@
 console.log('Loaded!');
 
+var button = document.getElementById("counter");
+
+button.onclick = function() {
+  
+  // Send a request to counter endoint
+  var request = new XMLHttpRequest();
+  
+  //Capture the response and store it in a variable
+  request.onreadystatechange = function() {
+      if(request.readyState === XMLHttpRequest.DONE) {
+          //Check response status if success
+          if(request.status === 200){
+              //Render the response in correct span
+              var counter = request.responseText;
+              var span = document.getElementById("count");
+              span.innerHTML = counter.toString();
+          }
+      }
+      
+  };
+
+};
+
 //Change the text of main-textdiv
 //var element = document.getElementById('main-text');
 //element.innerHTML = 'New Value';
@@ -21,17 +44,3 @@ console.log('Loaded!');
   //}
 //};
 
-var counter = 0;
-var button = document.getElementById("counter");
-
-button.onclick = function() {
-  // Send a request to counter endoint
-  
-  //Capture the response and store it in a variable
-  
-  //Render the response in correct span
-  counter = counter + 1;
-  var span = document.getElementById("count");
-  span.innerHTML = counter.toString();
-  
-};
