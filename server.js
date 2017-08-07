@@ -90,6 +90,14 @@ app.get('/counter', function(req, res) {
     res.send(counter.toString());
 });
 
+var names = [];
+
+app.get('/submit-name/:name', function(req, res) {
+    var name = req.params.name;
+    names.push(name);
+    res.send(JSON.stringify(names));
+});
+
 app.get('/:articleName', function (req, res) {
   //This :/ is a facility given by express framework to extract the 'part of path' as a variable from URL
   //such that it can be indexed directly into an array of strings!!
