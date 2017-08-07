@@ -45,7 +45,8 @@ submit.onclick = function() {
           //Check response status if success
           if(request.status === 200){
               //Render the response in correct span
-              var names = JSON.parse(request.responseText);
+              var names = request.responseText;
+              names = JSON.parse(names);
               var list = '';
               for(var i=0; i < names.length; i++) {
                 list += '<li>' + names[i] + '</li>';
