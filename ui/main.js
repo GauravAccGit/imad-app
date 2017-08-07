@@ -30,26 +30,38 @@ button.onclick = function() {
 
 //Submit name
 var nameInput = document.getElementById('name');
-var name = nameInput.value;
+var valueName = nameInput.value;
 
 var submit = document.getElementById('submit_btn');
 
 submit.onclick = function() {
     
-    // Create a request to name endoint
-    
+   // Create a request to counter endoint
+  var request = new XMLHttpRequest();
+  
+  //Capture the response and store it in a variable
+  request.onreadystatechange = function() {
+      if(request.readyState === XMLHttpRequest.DONE) {
+          //Check response status if success
+          if(request.status === 200){
+              //Render the response in correct span
+              var names = JSON.parse(request.responseText);
+              var list = '';
+              for(var i=0; i < names.length; i++) {
+                list += '<li>' + names[i] + '</li>';
+              }
+  
+              var ul = document.getElementById('namelist');
+              ul.innerHTML = list;
+          }
+      }
       
-  
-  var names = ['name1', 'name2', 'name3'];
-  var list = '';
-  for(var i=0; i < names.length; i++) {
-      list += '<li>' + names[i] + '</li>';
-  }
-  
-  var ul = document.getElementById('namelist');
-  ul.innerHTML = list;
-  
-    
+  };
+
+  // Send a request to counter endoint
+  request.open('GET', 'http://enggupta26.imad.hasura-app.io/submit-name?name=' + valueName, true);
+  request.send(null);
+
 };
 
 //Change the text of main-textdiv
