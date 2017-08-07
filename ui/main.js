@@ -28,12 +28,12 @@ button.onclick = function() {
   
 };
 
-//Submit name
+//Extract name value from the input box
 var nameInput = document.getElementById('name');
 var valueName = nameInput.value;
 
+//Send request when submit button is clicked and take action on response
 var submit = document.getElementById('submit_btn');
-
 submit.onclick = function() {
     
    // Create a request to counter endoint
