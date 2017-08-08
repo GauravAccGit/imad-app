@@ -103,7 +103,7 @@ app.get('/test-db', function(erq, res) {
        if(err) {
            res.status(500).send(err.toString());
        } else {
-           res.send(JSON.stringigy(result));
+           res.send(JSON.stringify(result));
        }
     });
 });
