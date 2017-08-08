@@ -122,11 +122,24 @@ app.get('/submit-name', function(req, res) {
     res.send(JSON.stringify(names));
 });
 
-app.get('/:articleName', function (req, res) {
-  //This :/ is a facility given by express framework to extract the 'part of path' as a variable from URL
-  //such that it can be indexed directly into an array of strings!!
-  var articleName = req.params.articleName;    
-  res.send(createTemplate(articles[articleName]));
+app.get('/articles/:articleName', function (req, res) {
+    //This /: is a facility given by express framework to extract the 'part of path' as a variable from URL
+    //such that it can be indexed directly into an array of strings!!
+    var articleName = req.params.articleName;
+    //make a select request
+    //send a response with results
+    pool.query("SELECT * FROM articles WHERE title = " + articleName, function(err, result) {
+       if(err) {
+           res.status(500).send(err.toString());
+       } else {
+           if(result.rows.length === 0) {
+                res.status(400).send('Article Not found');               
+           } else {
+                var articleData = result.rows[0];
+                res.send(createTemplate(articleData));
+           }
+       }
+    });
 });
 
 app.get('/ui/style.css', function (req, res) {
