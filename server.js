@@ -15,45 +15,6 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
-var articles = {
-      'article-one' : {
-      title: 'Article One',
-      heading: 'Article One',
-      date: 'August 3',
-      content: `
-        <p>
-            This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 1
-        </p>
-        <p>
-            This is articleone para 2, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 2
-        </p>
-        <p>
-            This is articleone para 3, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1, This is articleone para 1,This is articleone para 3
-        </p>
-      `
-        },
-        'article-two' : {
-      title: 'Article Two',
-      heading: 'Article Two',
-      date: 'August 5',
-      content: `
-        <p>
-            This is articleTwo para 1, 
-        </p>
-      `
-        },
-        'article-three' : {
-      title: 'Article Three',
-      heading: 'Article Three',
-      date: 'August 7',
-      content: `
-        <p>
-            This is articleThree para 1, 
-        </p>
-      `
-        }
-};
-
 function createTemplate (data) {
     var title = data.title;
     var heading = data.heading;
