@@ -10,7 +10,7 @@ var config = {
     database: enggupta26,
     port: 5432,
     password: process.env.DB_password    
-}
+};
 
 var app = express();
 app.use(morgan('combined'));
